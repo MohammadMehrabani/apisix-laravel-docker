@@ -1,0 +1,7 @@
+curl "http://127.0.0.1:9080/apisix/admin/routes/1" -H 'X-API-KEY:edd1c9f034335f136f87ad84b625c8f1' -X PUT -d '{"methods": ["GET"], "uri": "/get/lara", "upstream":{"type": "roundrobin","nodes": {"site:80":1}}}'
+
+curl "http://127.0.0.1:9080/apisix/admin/routes/1" -H 'X-API-KEY:edd1c9f034335f136f87ad84b625c8f1' -X PUT -d '{"methods": ["GET"], "uri": "/api/test", "upstream":{"type": "roundrobin","nodes": {"site:80":1}}}'
+
+
+// update /api/test
+curl "http://127.0.0.1:9080/apisix/admin/routes/1" -H 'X-API-KEY:edd1c9f034335f136f87ad84b625c8f1' -X PUT -d '{"methods": ["GET"], "uri": "/api/test", "plugins": {"limit-count": {"count": 3, "time_window": 60, "rejected_code":403, "rejected_msg": "Requests are too frequent, please try again later.", "key_type": "var", "key": "remote_addr"}, "key-auth": {"key": "barpin"}}, "upstream":{"type": "roundrobin","nodes": {"site:80":1}}}'

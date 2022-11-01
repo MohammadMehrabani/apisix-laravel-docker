@@ -66,6 +66,7 @@ services:
       apisix:
 
   site:
+    image: site
     build:
       context: laravel/dockerfiles
       dockerfile: nginx.dockerfile
