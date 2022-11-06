@@ -1,7 +1,7 @@
 # Manage Laravel Microservices APIs with Apache APISIX API Gateway
 
 This is an example project focus on the usage of [**Apache APISIX API Gateway**](https://apisix.apache.org/)
-for applications developed in **[PHP Laravel](https://laravel.com)** (Assume that you have an API that manage products).
+for applications developed in **[PHP Laravel](https://laravel.com)**.
 
 ## Build a multi-container APISIX via Docker CLI
 
