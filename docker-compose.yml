@@ -111,8 +111,24 @@ services:
       - db-data:/var/lib/mysql
     networks:
       apisix:
-    expose:
-      - 3306
+    ports:
+      - "3307:3306"
+  artisan:
+    build:
+      context: laravel/dockerfiles
+      dockerfile: php.dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    container_name: artisan
+    volumes:
+      - ./laravel:/var/www/html:delegated
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    entrypoint: ['php', '/var/www/html/artisan']
+    networks:
+      apisix:
 networks:
   apisix:
     driver: bridge
