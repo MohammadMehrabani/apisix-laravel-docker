@@ -29,6 +29,12 @@ create APP_KEY:
 docker-compose run --rm artisan key:generate
 ```
 
+run migration:
+
+``` bash
+docker-compose run --rm artisan migrate
+```
+
 create JWT_SECRET:
 
 ``` bash
