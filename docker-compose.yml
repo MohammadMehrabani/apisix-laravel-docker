@@ -129,6 +129,24 @@ services:
     entrypoint: ['php', '/var/www/html/artisan']
     networks:
       apisix:
+
+  composer:
+    build:
+      context: laravel/dockerfiles
+      dockerfile: composer.dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    container_name: composer
+    volumes:
+      - ./laravel:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      - php
+    user: laravel
+    entrypoint: [ 'composer', '--ignore-platform-reqs' ]
+    networks:
+      apisix:
 networks:
   apisix:
     driver: bridge
